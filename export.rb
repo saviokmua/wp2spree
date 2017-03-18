@@ -25,7 +25,6 @@ results.each do |row|
   contant << "\n"
 end
 
-contant << "#----------------------------\n"
 contant << "Spree::Product.destroy_all \n"
 contant << "shipping_category = Spree::ShippingCategory.first \n"
 
