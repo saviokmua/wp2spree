@@ -1,7 +1,5 @@
 require 'mysql2'
-require 'config.rb'
-
-
+require './config.rb'
 
 contant = []
 
@@ -13,7 +11,7 @@ contant << "cat = Spree::Taxonomy.create(name: \"Категорії\") \n"
 contant << "taxonomy_id = cat.id \n"
 contant << "root_taxon = Spree::Taxon.first \n"
 
-client = Mysql2::Client.new(access)
+client = Mysql2::Client.new($access)
 
 results = client.query("SELECT wtt.*,wt.name wt_name FROM wp_term_taxonomy wtt, wp_terms wt WHERE `wtt`.`taxonomy`='product_cat' AND `wt`.`term_id`=`wtt`.term_taxonomy_id ORDER BY wtt.parent")
 
@@ -27,9 +25,6 @@ results.each do |row|
 	contant << "\n"
 	#puts row.inspect
 end
-
-#puts contant
-
 
 File.open("seeds.rb", "w+") do |f|
   f.puts(contant)
