@@ -43,6 +43,7 @@ results.each do |row|
   contant << " puts \"slug:\#{slug}\" \n"
   contant << "product_params[:slug] = slug  \n"
   contant << "product_params[:description] = \"#{row['post_content'].gsub(/['"\\\x0]/,'\\\\\0')}\" \n"
+  contant << "product_params[:description_excerpt] = \"#{row['post_excerpt'].gsub(/['"\\\x0]/,'\\\\\0')}\" \n"  
   contant << "product_params[:price] = 0 \n"
   contant << "product = Spree::Product.create!(product_params)\n"
   contant << "product_params = {} \n"
